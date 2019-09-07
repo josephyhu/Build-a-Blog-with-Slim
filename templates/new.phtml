@@ -1,0 +1,25 @@
+<?php
+$section = "New Entry";
+
+include __DIR__ . '/header.phtml';
+?>
+         <section>
+             <div class="container">
+                <div class="new-entry">
+                    <h2>Publish New Entry</h2>
+                    <form method="post" action="index.pthml">
+                        <label for="title">Title<span style="color:red">*</span></label>
+                        <input type="text" name="title"><br>
+                        <label for="date">Date<span style="color:red">*</span></label>
+                        <input type="date" name="date"><br>
+                        <label for="entry">Entry<span style="color:red">*</span></label>
+                        <textarea rows="5" name="entry"></textarea>
+                        <label for="tags">Tags (separate with commas)</label>
+                        <textarea rows="2" name="tags"></textarea>
+                        <input type="submit" value="Publish Entry" class="button">
+                        <a href="index.pthml" class="button button-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+<?php include __DIR__ . '/footer.phtml'; ?>
