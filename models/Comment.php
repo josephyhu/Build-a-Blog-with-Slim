@@ -58,7 +58,7 @@ class Comment
         $statement->bindParam('id', $data['comment_id']);
         $statement->bindParam('comment', $data['comment']);
         $statement->execute();
-        if ($statement->rowCount()<1) {\
+        if ($statement->rowCount()<1) {
             throw new ApiException(ApiException::COMMENT_UPDATE_FAILED);
         }
         return $this->getComment($data['comment_id']);

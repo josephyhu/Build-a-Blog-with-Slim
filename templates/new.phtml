@@ -1,5 +1,18 @@
 <?php
+include __DIR__ . '/../config.php';
+
 $section = "New Entry";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
+    $date = trim(filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING));
+    $entry = trim(filter_input(INPUT_POST, 'entry', FILTER_SANITIZE_STRING));
+    $tags = trim(filter_input(INPUT_POST, 'tags', FILTER_SANITIZE_STRING));
+
+    $data = [$title, $date, $entry, $tags];
+
+    $post->createPost($data);
+}
 
 include __DIR__ . '/header.phtml';
 ?>
@@ -7,7 +20,7 @@ include __DIR__ . '/header.phtml';
              <div class="container">
                 <div class="new-entry">
                     <h2>Publish New Entry</h2>
-                    <form method="post" action="index.pthml">
+                    <form method="post" action="/">
                         <label for="title">Title<span style="color:red">*</span></label>
                         <input type="text" name="title"><br>
                         <label for="date">Date<span style="color:red">*</span></label>
@@ -17,7 +30,7 @@ include __DIR__ . '/header.phtml';
                         <label for="tags">Tags (separate with commas)</label>
                         <textarea rows="2" name="tags"></textarea>
                         <input type="submit" value="Publish Entry" class="button">
-                        <a href="index.pthml" class="button button-secondary">Cancel</a>
+                        <a href="/" class="button button-secondary">Cancel</a>
                     </form>
                 </div>
             </div>

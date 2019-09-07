@@ -1,7 +1,7 @@
 <?php
 // Routes
 
-$app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
+$app->post('/new', function ($request, $response, $args) {
     return $this->view->render($response, 'new.phtml', $args);
 });
 

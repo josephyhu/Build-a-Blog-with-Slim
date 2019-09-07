@@ -9,7 +9,7 @@ class Post
     {
         $this->database = $database;
     }
-    public function getCourses()
+    public function getPosts()
     {
         $statement = $this->database->prepare(
             'SELECT * FROM posts ORDER BY id'
@@ -36,15 +36,16 @@ class Post
     }
     public function createPost($data)
     {
-        if (empty($data['title']) || || empty($data['date'] || empty($data['entry'])) {
+        if (empty($data['title']) || empty($data['date']) || empty($data['entry'])) {
             throw new ApiException(ApiException::POST_INFO_REQUIRED);
         }
         $statement = $this->database->prepare(
-            'INSERT INTO posts(title, date, body) VALUES(:title, :date, :body)'
+            'INSERT INTO posts(title, date, body, tags) VALUES(:title, :date, :body, :tags)'
         );
         $statement->bindParam('title', $data['title']);
         $statement->bindParam('date', $data['date']);
         $statement->bindParam('body', $data['entry']);
+        $statement->bindParam('tags', $data['tags']);
         $statement->execute();
         if ($statement->rowCount()<1) {
             throw new ApiException(ApiException::POST_CREATION_FAILED);
@@ -57,11 +58,12 @@ class Post
             throw new ApiException(ApiException::POST_INFO_REQUIRED);
         }
         $statement = $this->database->prepare(
-            'UPDATE courses SET title=:title, date=:date, body=:body WHERE id=:id'
+            'UPDATE courses SET title=:title, date=:date, body=:body, tags=:tags WHERE id=:id'
         );
         $statement->bindParam('title', $data['title']);
         $statement->bindParam('date', $data['date']);
         $statement->bindParam('body', $data['entry']);
+        $statement->bindParam('tags', $data['tags']);
         $statement->bindParam('id', $data['post_id']);
         $statement->execute();
         if ($statement->rowCount()<1) {

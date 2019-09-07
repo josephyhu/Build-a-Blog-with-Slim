@@ -1,7 +1,6 @@
 <?php
-
-include __DIR__ . 'models/Post.php';
-include __DIR__ . 'models/Comment.php;'
+include __DIR__ . '/models/Post.php';
+include __DIR__ . '/models/Comment.php';
 
 try {
     $db = new PDO("sqlite:".__DIR__."/blog.db");
