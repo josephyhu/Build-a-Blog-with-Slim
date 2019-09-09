@@ -19,8 +19,21 @@ $container['logger'] = function ($c) {
 };
 
 $container['db'] = function ($c) {
-    $db = new PDO("sqlite:".__DIR__."/blog.db");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    try {
+        $db = new PDO("sqlite:".__DIR__."/blog.db");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (Exception $e) {
+        echo $e->getMesssage();
+    }
     return $db;
+};
+
+$container['post'] = function ($c) {
+    $post = new models\Post($db);
+    return $post;
+};
+
+$container['comment'] = function ($c) {
+    $comment = new models\Comment($db);
+    return $comment;
 };
