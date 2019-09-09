@@ -13,5 +13,9 @@ return [
             'name' => 'slim-app',
             'path' => __DIR__ . '/../logs/app.log',
         ],
+
+        'db' => [
+            'dbname' => 'blog',
+        ],
     ],
 ];
