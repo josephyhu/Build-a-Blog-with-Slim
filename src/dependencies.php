@@ -26,7 +26,7 @@ $container['db'] = function ($c) {
         $db = new PDO("sqlite:".__DIR__."/blog.db");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (Exception $e) {
-        echo $e->getMesssage();
+        echo $e->getMessage();
     }
     return $db;
 };
