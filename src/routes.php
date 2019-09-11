@@ -9,7 +9,7 @@ $app->post('/edit', function ($request, $response, $args) {
     return $this->view->render($response, 'edit.phtml', $args);
 });
 
-$app->get('/entries', function ($request, $response, $args) {
+$app->get('/entries/[{title}]', function ($request, $response, $args) {
 
     // Render details view
     return $this->renderer->render($response, 'detail.phtml', $args);
