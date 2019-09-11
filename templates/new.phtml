@@ -1,4 +1,6 @@
 <?php
+$title = $date = $entry = $tags = '';
+
 $section = "New Entry";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,11 +22,11 @@ include __DIR__ . '/header.phtml';
                     <h2>Publish New Entry</h2>
                     <form method="post" action="/">
                         <label for="title">Title<span style="color:red">*</span></label>
-                        <input type="text" name="title"><br>
+                        <input type="text" name="title" required><br>
                         <label for="date">Date<span style="color:red">*</span></label>
-                        <input type="date" name="date"><br>
+                        <input type="date" name="date" required><br>
                         <label for="entry">Entry<span style="color:red">*</span></label>
-                        <textarea rows="5" name="entry"></textarea>
+                        <textarea rows="5" name="entry" required></textarea>
                         <label for="tags">Tags (separate with commas)</label>
                         <textarea rows="2" name="tags"></textarea>
                         <input type="submit" value="Publish Entry" class="button">

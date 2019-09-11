@@ -8,7 +8,7 @@ include __DIR__ . '/header.phtml';
                 <div class="entry-list">
                     <article><?php
                     foreach ($post->getPosts() as $item) {
-                        echo "<h2><a href='entries/" . $item[implode('-', 'title')] . "'>" . $item['title'] . "</a></h2>";
+                        echo "<h2><a href='entries/" . implode('-', explode(' ', $item['title'])) . "'>" . $item['title'] . "</a></h2>";
                         echo "<time datetime='" . $item['date'] . "'>" . date("F d, Y", strtotime($item['date'])) . "</time><br>";
                         if (!empty($item['tags'])) {
                             $tags = explode(trim(', '), $item['tags']);

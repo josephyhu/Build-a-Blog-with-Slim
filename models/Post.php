@@ -22,7 +22,7 @@ class Post
         );
         $statement->bindParam(1, $post_id, PDO::PARAM_INT);
         $statement->execute();
-        $post = $statement->fetch();
+        $post = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $post;
     }
     public function createPost($data)
