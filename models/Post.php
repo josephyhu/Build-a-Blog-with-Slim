@@ -30,10 +30,10 @@ class Post
         $statement = $this->database->prepare(
             'INSERT INTO posts(title, date, body, tags) VALUES(?, ?, ?, ?)'
         );
-        $statement->bindParam(1, $data['title'], PDO::PARAM_STR);
-        $statement->bindParam(2, $data['date'], PDO::PARAM_STR);
-        $statement->bindParam(3, $data['entry'], PDO::PARAM_LOB);
-        $statement->bindParam(4, $data['tags'], PDO::PARAM_LOB);
+        $statement->bindParam(1, $data[$title], PDO::PARAM_STR);
+        $statement->bindParam(2, $data[$date], PDO::PARAM_STR);
+        $statement->bindParam(3, $data[$entry], PDO::PARAM_LOB);
+        $statement->bindParam(4, $data[$tags], PDO::PARAM_LOB);
         $statement->execute();
         return $this->getPost($this->database->lastInsertId());
     }
@@ -42,11 +42,11 @@ class Post
         $statement = $this->database->prepare(
             'UPDATE courses SET title = ? date = ?, body = ?, tags = ? WHERE id = ?'
         );
-        $statement->bindParam(1, $data['title'], PDO::PARAM_STR);
-        $statement->bindParam(2, $data['date'], PDO::PARAM_STR);
-        $statement->bindParam(3, $data['entry'], PDO::PARAM_LOB);
-        $statement->bindParam(4, $data['tags'], PDO::PARAM_LOB);
-        $statement->bindParam(5, $data['post_id'], PDO::PARAM_INT);
+        $statement->bindParam(1, $data[$title], PDO::PARAM_STR);
+        $statement->bindParam(2, $data[$date], PDO::PARAM_STR);
+        $statement->bindParam(3, $data[$entry], PDO::PARAM_LOB);
+        $statement->bindParam(4, $data[$tags], PDO::PARAM_LOB);
+        $statement->bindParam(5, $data[$id], PDO::PARAM_INT);
         $statement->execute();
         return $this->getPost($data['post_id']);
     }
