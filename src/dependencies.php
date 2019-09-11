@@ -32,11 +32,11 @@ $container['db'] = function ($c) {
 };
 
 $container['post'] = function ($c) {
-    $post = new Post($db);
+    $post = new Post($c->get('db'));
     return $post;
 };
 
 $container['comment'] = function ($c) {
-    $comment = new Comment($db);
+    $comment = new Comment($c->get('db'));
     return $comment;
 };
