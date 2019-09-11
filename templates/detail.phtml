@@ -1,7 +1,8 @@
 <?php
-include __DIR__ . '/../config.php';
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+$item = $post->getPost($id);
 
-$section = "Detail";
+$section = $item[0]['title'];
 
 include __DIR__ . '/header.phtml';
 ?>
@@ -9,11 +10,19 @@ include __DIR__ . '/header.phtml';
             <div class="container">
                  <div class="entry-list single">
                     <article>
-                        <h1>The best day I’ve ever had</h1>
-                        <time datetime="2016-01-31 1:00">January 31, 2016 at 1:00</time>
+                        <h1><?php echo $item[0]['title']; ?></h1>
+                        <time datetime="<?php $item[0]['date']; ?>"><?php echo date('F d, Y', strtotime($item[0]['date'])); ?></time>
                         <div class="entry">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut rhoncus felis, vel tincidunt neque. Vestibulum ut metus eleifend, malesuada nisl at, scelerisque sapien. Vivamus pharetra massa libero, sed feugiat turpis efficitur at.</p>
-                            <p>Cras egestas ac ipsum in posuere. Fusce suscipit, libero id malesuada placerat, orci velit semper metus, quis pulvinar sem nunc vel augue. In ornare tempor metus, sit amet congue justo porta et. Etiam pretium, sapien non fermentum consequat, <a href="">dolor augue</a> gravida lacus, non accumsan lorem odio id risus. Vestibulum pharetra tempor molestie. Integer sollicitudin ante ipsum, a luctus nisi egestas eu. Cras accumsan cursus ante, non dapibus tempor.</p>
+                            <p><?php echo $item[0]['entry']; ?></p>
+                            <p><?php if (!empty($item[0]['tags'])) {
+                               $tags = explode(trim(", "), $item[0]['tags']);
+                               echo "<ul>";
+                               foreach ($tags as $tag) {
+                                   echo "<li><a href='tag/" . trim($tag) . "'>" . $tag . "</a></li>";
+                               }
+                               echo "</ul>";
+                               }
+                               ?></p>
                             <p><a class="link" href="edit">Edit Entry</a></p>
                         </div>
                     </article>

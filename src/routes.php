@@ -1,17 +1,20 @@
 <?php
 // Routes
 
-$app->post('/new', function ($request, $response, $args) {
+$app->get('/new', function ($request, $response, $args) {
+    $args['post'] = $this->post;
     return $this->view->render($response, 'new.phtml', $args);
 });
 
 $app->post('/edit', function ($request, $response, $args) {
+    $args['post'] = $this->post;
     return $this->view->render($response, 'edit.phtml', $args);
 });
 
 $app->get('/entries/[{title}]', function ($request, $response, $args) {
 
     // Render details view
+    $args['post'] = $this->post;
     return $this->renderer->render($response, 'detail.phtml', $args);
 });
 
