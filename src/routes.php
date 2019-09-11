@@ -20,5 +20,6 @@ $app->get('/', function ($request, $response, $args) {
     $this->logger->info("Slim-Skeleton '/' route");
 
     // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args['post'] = $post);
+    $args['post'] = $post;
+    return $this->renderer->render($response, 'index.phtml', $args);
 });
