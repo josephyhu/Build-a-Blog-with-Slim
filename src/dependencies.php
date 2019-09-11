@@ -1,4 +1,7 @@
 <?php
+
+include '../models/Post.php';
+include '../models/Comment.php';
 // DIC configuration
 
 $container = $app->getContainer();

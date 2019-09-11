@@ -5,7 +5,7 @@ use \App\Exception\ApiException;
 class Comment
 {
     protected $database;
-    public function __construct(\PDO $database)
+    public function __construct($database)
     {
         $this->database = $database;
     }
