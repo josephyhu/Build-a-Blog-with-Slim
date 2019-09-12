@@ -11,7 +11,7 @@ if (deletePost($id)) {
     header('refresh: 1; url = /');
 } else {
     echo 'Unable to delete entry. Try again.';
-    header('refresh: 1; url = /entries/'" . $id . "'');
+    header('refresh: 1; url = /entries/"' . implode('-', explode(' ', $item['title'])) . '?id=' . $item['id'] . '"');
 }
 include __DIR__ . '/header.phtml';
 
