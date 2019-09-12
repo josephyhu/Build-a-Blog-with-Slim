@@ -1,6 +1,8 @@
 <?php
 $tag = filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_STRING);
 
+var_dump($tag);
+
 $section = $tag;
 
 include __DIR__ . '/header.phtml';
