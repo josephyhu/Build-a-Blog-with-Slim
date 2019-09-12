@@ -6,7 +6,7 @@
 body {
 	background: url(../../concepts/JavaTechdegree_SparkBlog_1.jg) top center no-repeat;
 	font-size: 15px;
-	color: #FFF;
+	color: #999;
 	font-family: 'Noto Serif', Georgia, serif;
 	background: #008;
 }
@@ -23,7 +23,7 @@ header .site-header {
 header .logo {
 	border: 5px solid #000;
 	text-decoration: none;
-	color: #FFF;
+	color: #999;
 	font-size: 21px;
 	font-weight: bold;
 	padding: 5px 10px;
@@ -41,10 +41,10 @@ footer {
 	height: 30px;
 	text-align: center;
 	padding: 35px 0;
-	color: #FFF;
+	color: #999;
 }
 footer a {
-	color: #FFF;
+	color: #999;
 	text-decoration: none;
 	border-bottom: 2px solid #666;
 	padding-bottom: 1px;
@@ -152,10 +152,10 @@ a.link {
 }
 .entry-list article a {
 	text-decoration: none;
-	color: #FFF;
+	color: #999;
 }
 .entry-list time {
-	color: #FFF;
+	color: #999;
 }
 .entry-list.single {
 	padding-bottom: 30px;
@@ -197,7 +197,7 @@ a.link {
 }
 .comment time {
 	display: block;
-	color: #FFF;
+	color: #999;
 	font-size: 14px;
 	margin: 3px 0 20px 0;
 }

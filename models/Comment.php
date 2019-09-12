@@ -8,35 +8,57 @@ class Comment
     }
     public function getComment($comment_id)
     {
-        $statement = $this->database->prepare('SELECT * FROM comments WHERE id = ?');
-        $statement->bindParam(1, $comment_id, PDO::PARAM_INT);
-        $statement->execute();
+        $sql = 'SELECT * FROM comments WHERE id = ?';
+        try {
+            $statement = $this->database->prepare($sql);
+            $statement->bindValue(1, $comment_id, PDO::PARAM_INT);
+            $statement->execute();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "<br>";
+            return false;
+        }
         $comment = $statement->fetch();
         return $comment;
     }
-    public function createComment($data)
+    public function createComment($name, $comment_body)
     {
-        $statement = $this->database->prepare('INSERT INTO comments (name, body) VALUES (?, ?)');
-        $statement->bindParam(1, $data['name'], PDO::PARAM_STR);
-        $statement->bindParam(2, $data['comment'], PDO::PARAM_LOB);
-        $statement->execute();
-        return $this->getComment($this->database->lastInsertId());
+        $sql = 'INSERT INTO comments (name, body) VALUES (?, ?)';
+        try {
+            $statement = $this->database->prepare($sql);
+            $statement->bindValue(1, $name, PDO::PARAM_STR);
+            $statement->bindValue(2, $comment_body, PDO::PARAM_LOB);
+            $statement->execute();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "<br>";
+            return false;
+        }
+        return true;
     }
-    public function updateComment($data)
+    public function updateComment($comment_body, $comment_id)
     {
-        $this->getComment($data['comment_id']);
-        $statement = $this->database->prepare('UPDATE comments SET body = ? WHERE id = ?');
-        $statement->bindParam(1, $data['comment_id'], PDO::PARAM_INT);
-        $statement->bindParam(2, $data['comment'], PDO::PARAM_LOB);
-        $statement->execute();
-        return $this->getComment($data['comment_id']);
+        $sql = 'UPDATE comments SET body = ? WHERE id = ?';
+        try {
+            $statement = $this->database->prepare($sql);
+            $statement->bindValue(1, $comment_body, PDO::PARAM_LOB);
+            $statement->bindValue(2, $comment_id, PDO::PARAM_INT);
+            $statemnet->execute;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "<br>";
+            return false;
+        }
+        return true;
     }
     public function deleteComment($comment_id)
     {
-        $this->getComment($comment_id);
-        $statement = $this->database->prepare('DELETE FROM comments WHERE id = ?');
-        $statement->bindParam(1, $comment_id, PDO::PARAM_INT);
-        $statement->execute();
-        return ['message' => 'The comment was deleted.'];
+        $sql = 'DELETE FROM comments WHERE id = ?';
+        try {
+            $statement = $this->database->prepare($sql);
+            $statement->bindValue(1, $comment_id, PDO::PARAM_INT);
+            $statement->execute();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "<br>";
+            return false;
+        }
+        return true;
     }
 }

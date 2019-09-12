@@ -13,9 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $entry = trim(filter_input(INPUT_POST, 'entry', FILTER_SANITIZE_STRING));
     $tags = trim(filter_input(INPUT_POST, 'tags', FILTER_SANITIZE_STRING));
 
-    $data = [$title, $date, $entry, $tags, $id];
-
-    $post->updatePost($data);
+    $post->updatePost($title, $date, $entry, $tags, $id);
 }
 
 include __DIR__ . '/header.phtml';

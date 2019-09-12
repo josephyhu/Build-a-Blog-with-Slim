@@ -4,6 +4,13 @@ $item = $post->getPost($id);
 
 $section = $item[0]['title'];
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $name = trim(filter_input(INPUT_GET, 'name', FILTER_SANITIZE_STRING));
+    $comment_body = trim(filter_input(INPUT_GET, 'comment', FILTER_SANITIZE_STRING));
+
+    $comment->createComment($name, $comment_body);
+}
+
 include __DIR__ . '/header.phtml';
 ?>
          <section>
@@ -39,11 +46,11 @@ include __DIR__ . '/header.phtml';
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut rhoncus felis, vel tincidunt neque. Vestibulum ut metus eleifend, malesuada nisl at, scelerisque sapien. Vivamus pharetra massa libero, sed feugiat turpis efficitur at.</p>
                     </div>
                     <div class="new-comment">
-                        <form>
-                              <label for="name">Name</label>
-                              <input type="text" name="name"><br>
-                              <label for="comment">Comment</label>
-                              <textarea rows="5" name="comment"></textarea>
+                        <form method="get">
+                              <label for="name">Name<span style="color:red">*</span></label>
+                              <input type="text" name="name" required><br>
+                              <label for="comment">Comment<span style="color:red">*</span></label>
+                              <textarea rows="5" name="comment" required></textarea>
                               <input type="submit" value="Post Comment" class="button">
                         </form>
                     </div>
