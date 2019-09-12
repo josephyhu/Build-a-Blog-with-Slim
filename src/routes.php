@@ -6,7 +6,12 @@ $app->get('/new', function ($request, $response, $args) {
     return $this->view->render($response, 'new.phtml', $args);
 });
 
-$app->get('/edit', function ($request, $response, $args) {
+$app->get('/delete/[{id}]', function ($request, $response, $args) {
+    $args['post'] = $this->post;
+    return $this->view->render($response, 'delete.phtml', $args);
+});
+
+$app->get('/edit/[{id}]', function ($request, $response, $args) {
     $args['post'] = $this->post;
     return $this->view->render($response, 'edit.phtml', $args);
 });

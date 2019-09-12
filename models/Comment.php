@@ -6,14 +6,6 @@ class Comment
     {
         $this->database = $database;
     }
-    public function getCommentsByPostId($post_id)
-    {
-        $statement = $this->database->prepare('SELECT * FROM comments WHERE post_id = ?');
-        $statement->bindParam(1, $post_id, PDO::PARAM_INT);
-        $statement->execute();
-        $comments = $statement->fetchAll();
-        return $comments;
-    }
     public function getComment($comment_id)
     {
         $statement = $this->database->prepare('SELECT * FROM comments WHERE id = ?');
@@ -24,8 +16,8 @@ class Comment
     }
     public function createComment($data)
     {
-        $statement = $this->database->prepare('INSERT INTO comments (post_id, comment) VALUES (?, ?)');
-        $statement->bindParam(1, $data['post_id'], PDO::PARAM_INT);
+        $statement = $this->database->prepare('INSERT INTO comments (name, body) VALUES (?, ?)');
+        $statement->bindParam(1, $data['name'], PDO::PARAM_STR);
         $statement->bindParam(2, $data['comment'], PDO::PARAM_LOB);
         $statement->execute();
         return $this->getComment($this->database->lastInsertId());
@@ -33,13 +25,13 @@ class Comment
     public function updateComment($data)
     {
         $this->getComment($data['comment_id']);
-        $statement = $this->database->prepare('UPDATE comments SET comment = ? WHERE id = ?');
+        $statement = $this->database->prepare('UPDATE comments SET body = ? WHERE id = ?');
         $statement->bindParam(1, $data['comment_id'], PDO::PARAM_INT);
         $statement->bindParam(2, $data['comment'], PDO::PARAM_LOB);
         $statement->execute();
         return $this->getComment($data['comment_id']);
     }
-    public function deleteReview($comment_id)
+    public function deleteComment($comment_id)
     {
         $this->getComment($comment_id);
         $statement = $this->database->prepare('DELETE FROM comments WHERE id = ?');

@@ -1,0 +1,18 @@
+<?php
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+$section = 'Delete Entry';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+}
+if (deletePost($id)) {
+    echo 'Successfully deleted entry.';
+    header('refresh: 1; url = index.php');
+} else {
+    echo 'Unable to delete entry. Try again.';
+    header('refresh: 1; url = detail.php?id="' . $id . '"');
+}
+include __DIR__ . '/header.phtml';
+
+include __DIR__ . '/footer.phtml';
