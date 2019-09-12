@@ -6,14 +6,14 @@
 body {
 	background: url(../../concepts/JavaTechdegree_SparkBlog_1.jg) top center no-repeat;
 	font-size: 15px;
-	color: #000;
+	color: #999;
 	font-family: 'Noto Serif', Georgia, serif;
 	background: #444;
 }
 .container {
 	margin: 0 auto;
 	padding: 0 25px;
-	background: #FFF;
+	background: #00F;
 }
 header .site-header {
 	border-bottom: 1px solid #d1d1d1;
@@ -23,7 +23,7 @@ header .site-header {
 header .logo {
 	border: 5px solid #000;
 	text-decoration: none;
-	color: #000;
+	color: #999;
 	font-size: 21px;
 	font-weight: bold;
 	padding: 5px 10px;
@@ -37,7 +37,7 @@ header .new-entry {
 	margin: 25px 0 0 0;
 }
 footer {
-	background: #444;
+	background: #008;
 	height: 30px;
 	text-align: center;
 	padding: 35px 0;
@@ -152,10 +152,10 @@ a.link {
 }
 .entry-list article a {
 	text-decoration: none;
-	color: #000;
+	color: #999;
 }
 .entry-list time {
-	color: #888;
+	color: #999;
 }
 .entry-list.single {
 	padding-bottom: 30px;
@@ -173,7 +173,7 @@ a.link {
 	margin-bottom: 40px;
 }
 .entry-comments {
-	background: #f1f1f1;
+	background: #00008B;
 	padding: 70px 0;
 }
 .entry-comments .container {
@@ -197,7 +197,7 @@ a.link {
 }
 .comment time {
 	display: block;
-	color: #888;
+	color: #999;
 	font-size: 14px;
 	margin: 3px 0 20px 0;
 }
@@ -261,17 +261,3 @@ form textarea:hover {
 input[type=submit] {
 	margin-right: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
