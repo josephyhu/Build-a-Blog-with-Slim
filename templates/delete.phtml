@@ -8,10 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 if (deletePost($id)) {
     echo 'Successfully deleted entry.';
-    header('refresh: 1; url = index.php');
+    header('refresh: 1; url = /');
 } else {
     echo 'Unable to delete entry. Try again.';
-    header('refresh: 1; url = detail.php?id="' . $id . '"');
+    header('refresh: 1; url = /entries/'" . $id . "');
 }
 include __DIR__ . '/header.phtml';
 
