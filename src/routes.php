@@ -23,7 +23,7 @@ $app->get('/entries/{title}', function ($request, $response, $args) {
     return $this->renderer->render($response, 'detail.phtml', $args);
 });
 
-$app->get('/tags/{tag}', function ($request, $response, $args) {
+$app->get('/tags', function ($request, $response, $args) {
     $args['post'] = $this->post;
     return $this->renderer->render($response, 'tags.phtml', $args);
 });

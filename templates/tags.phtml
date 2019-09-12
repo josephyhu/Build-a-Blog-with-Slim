@@ -1,8 +1,6 @@
 <?php
 $tag = filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_STRING);
 
-var_dump($tag);
-
 $section = $tag;
 
 include __DIR__ . '/header.phtml';
@@ -20,4 +18,4 @@ include __DIR__ . '/header.phtml';
       </div>
     </div>
   </section>
-<?php include __DIR__ . 'inc/footer.phtml'; ?>
+<?php include __DIR__ . '/footer.phtml'; ?>
