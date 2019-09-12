@@ -23,7 +23,7 @@ header .site-header {
 header .logo {
 	border: 5px solid #000;
 	text-decoration: none;
-	color: #999;
+	color: #FFF;
 	font-size: 21px;
 	font-weight: bold;
 	padding: 5px 10px;
@@ -41,10 +41,10 @@ footer {
 	height: 30px;
 	text-align: center;
 	padding: 35px 0;
-	color: #999;
+	color: #FFF;
 }
 footer a {
-	color: #999;
+	color: #FFF;
 	text-decoration: none;
 	border-bottom: 2px solid #666;
 	padding-bottom: 1px;
@@ -152,10 +152,10 @@ a.link {
 }
 .entry-list article a {
 	text-decoration: none;
-	color: #999;
+	color: #FFF;
 }
 .entry-list time {
-	color: #999;
+	color: #FFF;
 }
 .entry-list.single {
 	padding-bottom: 30px;
@@ -197,7 +197,7 @@ a.link {
 }
 .comment time {
 	display: block;
-	color: #999;
+	color: #FFF;
 	font-size: 14px;
 	margin: 3px 0 20px 0;
 }
