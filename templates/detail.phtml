@@ -1,5 +1,5 @@
 <?php
-$id = 2;
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 $item = $post->getPost($id);
 
 $section = $item[0]['title'];
