@@ -23,6 +23,11 @@ $app->get('/entries/[{title}]', function ($request, $response, $args) {
     return $this->renderer->render($response, 'detail.phtml', $args);
 });
 
+$app->get('/tags/[{tag}]', function ($request, $response, $args) {
+    $args['post'] = $this->post;
+    return $this->renderer->render($response, 'tags.phtml', $args);
+});
+
 $app->get('/', function ($request, $response, $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");

@@ -18,7 +18,7 @@ include __DIR__ . '/header.phtml';
                                $tags = explode(trim(", "), $item[0]['tags']);
                                echo "<ul>";
                                foreach ($tags as $tag) {
-                                   echo "<li><a href='tag/" . trim($tag) . "'>" . $tag . "</a></li>";
+                                   echo "<li><a href='/../tags/" . trim($tag) . "'>" . $tag . "</a></li>";
                                }
                                echo "</ul>";
                                }

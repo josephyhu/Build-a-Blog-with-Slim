@@ -1,0 +1,21 @@
+<?php
+$tag = filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_STRING);
+
+$section = $tag;
+
+include __DIR__ . '/header.phtml';
+?>
+  <section>
+    <div class="container">
+      <div class="entry-list">
+        <article><?php
+        foreach ($post->getPostsByTag($tag) as $item) {
+            echo "<h2><a href='/../entries/" . implode('-', explode(' ', $item['title'])) . "'>" . $item['title'] . "</a></h2>";
+            echo "<time datetime='" . $item['date'] . "'>" . date("F d, Y", strtotime($item['date'])) . "</time><br>";
+        }
+        ?>
+        </article>
+      </div>
+    </div>
+  </section>
+<?php include __DIR__ . 'inc/footer.phtml'; ?>

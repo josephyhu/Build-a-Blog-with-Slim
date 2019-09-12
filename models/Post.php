@@ -19,6 +19,18 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
+    public function getPostsByTag($tag) {
+        $sql = "SELECT id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
+        try {
+            $statement = $this->database->prepare($sql);
+            $statement->execute();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "<br>";
+            return array();
+        }
+        $posts = $statement->fetchAll();
+        return $posts;
+    }
     public function getPost($post_id)
     {
         $sql = 'SELECT * FROM posts WHERE id = ?';
