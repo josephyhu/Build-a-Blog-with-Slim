@@ -1,5 +1,5 @@
 <?php
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+$id = 1;
 $item = $post->getPost($id);
 
 $section = $item[0]['title'];
@@ -13,7 +13,7 @@ include __DIR__ . '/header.phtml';
                         <h1><?php echo $item[0]['title']; ?></h1>
                         <time datetime="<?php $item[0]['date']; ?>"><?php echo date('F d, Y', strtotime($item[0]['date'])); ?></time>
                         <div class="entry">
-                            <p><?php echo $item[0]['entry']; ?></p>
+                            <p><?php echo $item[0]['body']; ?></p>
                             <p><?php if (!empty($item[0]['tags'])) {
                                $tags = explode(trim(", "), $item[0]['tags']);
                                echo "<ul>";

@@ -48,7 +48,7 @@ class Post
         $statement->bindParam(4, $data[$tags], PDO::PARAM_LOB);
         $statement->bindParam(5, $data[$id], PDO::PARAM_INT);
         $statement->execute();
-        return $this->getPost($data['post_id']);
+        return $this->getPost($data[$id]);
     }
     public function deletePost($post_id)
     {
