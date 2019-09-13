@@ -22,7 +22,7 @@ $app->map(['GET', 'POST'], '/newcomment', function ($request, $response, $args) 
 
 $app->get('/delete/{id}', function ($request, $response, $args) {
     $args['post'] = $this->post;
-    $this->post->deletePost($id);
+    $this->post->deletePost($args['id']);
     return $response->withStatus(302)->withHeader('Location', '/');
 });
 
