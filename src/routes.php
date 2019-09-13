@@ -15,7 +15,6 @@ $app->get('/delete/{id}', function ($request, $response, $args) {
     $args['post'] = $this->post;
     $this->post->deletePost($id);
     return $response->withStatus(302)->withHeader('Location', '/');
-    return $this->renderer->render($response, 'delete.phtml', $args);
 });
 
 $app->map(['GET', 'POST'], '/edit', function ($request, $response, $args) {
