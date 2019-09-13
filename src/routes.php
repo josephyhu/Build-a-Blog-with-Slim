@@ -1,19 +1,28 @@
 <?php
 // Routes
 
-$app->get('/new', function ($request, $response, $args) {
+$app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
     $args['post'] = $this->post;
-    return $this->view->render($response, 'new.phtml', $args);
+    if ($request->getMethod() == "POST") {
+        $args = array_merge($args, $request->getParsedBody());
+        if ($post->createPost($args['title'], $args['date'], $args['entry'], $args['tags'])) {
+            echo 'Successfully added entry.';
+            header('refresh: 1; url = /');
+        } else {
+            echo 'Unable to add entry. Try again.';
+        }
+    }
+    return $this->renderer->render($response, 'new.phtml', $args);
 });
 
-$app->get('/delete/{id}', function ($request, $response, $args) {
+$app->get('/delete', function ($request, $response, $args) {
     $args['post'] = $this->post;
-    return $this->view->render($response, 'delete.phtml', $args);
+    return $this->renderer->render($response, 'delete.phtml', $args);
 });
 
-$app->get('/edit/{id}', function ($request, $response, $args) {
+$app->map(['GET', 'POST'], '/edit', function ($request, $response, $args) {
     $args['post'] = $this->post;
-    return $this->view->render($response, 'edit.phtml', $args);
+    return $this->renderer->render($response, 'edit.phtml', $args);
 });
 
 $app->get('/entries/{title}', function ($request, $response, $args) {

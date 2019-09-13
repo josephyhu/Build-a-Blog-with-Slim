@@ -4,13 +4,6 @@ $item = $post->getPost($id);
 
 $section = $item[0]['title'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $name = trim(filter_input(INPUT_GET, 'name', FILTER_SANITIZE_STRING));
-    $comment_body = trim(filter_input(INPUT_GET, 'comment', FILTER_SANITIZE_STRING));
-
-    $comment->createComment($name, $comment_body);
-}
-
 include __DIR__ . '/header.phtml';
 ?>
          <section>
@@ -18,7 +11,7 @@ include __DIR__ . '/header.phtml';
                  <div class="entry-list single">
                     <article>
                         <h1><?php echo $item[0]['title']; ?></h1>
-                        <time datetime="<?php $item[0]['date']; ?>"><?php echo date('F d, Y H:i:s', strtotime($item[0]['date'])); ?></time>
+                        <time datetime="<?php $item[0]['date']; ?>"><?php echo date('F d, Y H:i', strtotime($item[0]['date'])); ?></time>
                         <div class="entry">
                             <p><?php echo $item[0]['body']; ?></p>
                             <p><?php if (!empty($item[0]['tags'])) {
@@ -30,8 +23,8 @@ include __DIR__ . '/header.phtml';
                                echo "</ul>";
                                }
                                ?></p>
-                            <p><a class="link" href="/edit/<?php echo $id; ?>">Edit Entry</a></p>
-                            <p><a class="link" href="/delete/<?php echo $id; ?>">Delete Entry</a></p>
+                            <p><a class="link" href="/edit?id=<?php echo $id; ?>">Edit Entry</a></p>
+                            <p><a class="link" href="/delete?id=<?php echo $id; ?>">Delete Entry</a></p>
                         </div>
                     </article>
                 </div>

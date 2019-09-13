@@ -13,7 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $entry = trim(filter_input(INPUT_POST, 'entry', FILTER_SANITIZE_STRING));
     $tags = trim(filter_input(INPUT_POST, 'tags', FILTER_SANITIZE_STRING));
 
-    $post->updatePost($title, $date, $entry, $tags, $id);
+    if ($post->updatePost($title, $date, $entry, $tags, $id)) {
+        echo 'Successfully edited entry.';
+        header('refresh: 1; url = entries/' . implode('-', explode(' ', $item[0]['title'])) . '?id=' . $item[0]['id'] . '');
+    } else {
+        echo 'Unable to edit entry. Try again.';
+    }
 }
 
 include __DIR__ . '/header.phtml';
@@ -22,13 +27,13 @@ include __DIR__ . '/header.phtml';
              <div class="container">
                 <div class="edit-entry">
                     <h2>Edit Entry</h2>
-                    <form method="post" action="/">
-                        <label for="title"></label>
+                    <form method="post" action="/edit?id=<?php echo $id; ?>">
+                        <label for="title">Title</label>
                         <input type="text" name="title" value="<?php echo $item[0]['title']; ?>"><br>
-                        <label for="date"></label>
+                        <label for="date">Date</label>
                         <input type="datetime-local" name="date" value="<?php echo $item[0]['date']; ?>"><br>
-                        <label for="entry"></label>
-                        <textarea rows="5" name="entry"><?php echo $item[0]['entry']; ?></textarea>
+                        <label for="entry">Entry</label>
+                        <textarea rows="5" name="entry"><?php echo $item[0]['body']; ?></textarea>
                         <label for="tags">Tags (separate with commas)</label>
                         <textarea rows="2" name="tags"><?php echo $item[0]['tags']; ?></textarea>
                         <input type="hidden" name="post_id" value="<?php echo $id; ?>">

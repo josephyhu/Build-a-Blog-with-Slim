@@ -3,11 +3,13 @@ $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
 $section = 'Delete Entry';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+if ($post->deletePost($id)) {
+    echo 'Successfully deleted entry.';
+    header('refresh: 1; url = /');
+} else {
+    echo 'Unable to delete entry. Try again.';
+    header('refresh: 1; url = entries/' . implode('-', explode(' ', $item['title'])) . '?id=' . $item['id'] . '');
 }
-
-deletePost($id);
 
 include __DIR__ . '/header.phtml';
 
