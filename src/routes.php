@@ -3,7 +3,7 @@
 
 $app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
     $args['post'] = $this->post;
-    if ($request->getMethod() == "POST") {
+    if ($request->getMethod() == 'POST') {
         $args = array_merge($args, $request->getParsedBody());
         if ($post->createPost($args['title'], $args['date'], $args['entry'], $args['tags'])) {
             echo 'Successfully added entry.';
