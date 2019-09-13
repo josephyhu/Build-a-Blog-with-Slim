@@ -81,10 +81,13 @@ class Post
     public function deletePost($post_id)
     {
         $sql = 'DELETE FROM posts WHERE id = ?';
+        $sql2 = "UPDATE sqlite_sequence SET seq = 0 WHERE name = 'posts'";
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
             $statement->execute();
+            $statement2 = $this->database->prepare($sql2);
+            $statement2->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
             return false;
