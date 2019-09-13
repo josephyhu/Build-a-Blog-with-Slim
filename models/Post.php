@@ -20,7 +20,7 @@ class Post
         return $posts;
     }
     public function getPostsByTag($tag) {
-        $sql = "SELECT post_id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
+        $sql = "SELECT id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
         try {
             $statement = $this->database->prepare($sql);
             $statement->execute();
@@ -33,7 +33,7 @@ class Post
     }
     public function getPost($post_id)
     {
-        $sql = 'SELECT * FROM posts WHERE post_id = ?';
+        $sql = 'SELECT * FROM posts WHERE id = ?';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
@@ -63,7 +63,7 @@ class Post
     }
     public function updatePost($title, $date, $entry, $tags, $post_id)
     {
-        $sql = 'UPDATE posts SET title = ?, date = ?, body = ?, tags = ? WHERE post_id = ?';
+        $sql = 'UPDATE posts SET title = ?, date = ?, body = ?, tags = ? WHERE id = ?';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $title, PDO::PARAM_STR);
@@ -80,7 +80,7 @@ class Post
     }
     public function deletePost($post_id)
     {
-        $sql = 'DELETE FROM posts WHERE post_id = ?';
+        $sql = 'DELETE FROM posts WHERE id = ?';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
