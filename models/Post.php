@@ -20,7 +20,7 @@ class Post
         return $posts;
     }
     public function getPostsByTag($tag) {
-        $sql = "SELECT id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
+        $sql = "SELECT post_id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
         try {
             $statement = $this->database->prepare($sql);
             $statement->execute();
@@ -33,7 +33,7 @@ class Post
     }
     public function getPost($post_id)
     {
-        $sql = 'SELECT * FROM posts WHERE id = ?';
+        $sql = 'SELECT * FROM posts WHERE post_id = ?';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
@@ -61,16 +61,16 @@ class Post
         }
         return true;
     }
-    public function updatePost($data)
+    public function updatePost($title, $date, $entry, $tags, $post_id)
     {
-        $sql = 'UPDATE posts SET title = ?, date = ?, body = ?, tags = ? WHERE Id = ?';
+        $sql = 'UPDATE posts SET title = ?, date = ?, body = ?, tags = ? WHERE post_id = ?';
         try {
             $statement = $this->database->prepare($sql);
-            $statement->bindValue(1, $data[$title], PDO::PARAM_STR);
-            $statement->bindValue(2, $data[$date], PDO::PARAM_STR);
-            $statement->bindValue(3, $data[$entry], PDO::PARAM_LOB);
-            $statement->bindValue(4, $data[$tags], PDO::PARAM_LOB);
-            $statement->bindValue(5, $data[$id], PDO::PARAM_INT);
+            $statement->bindValue(1, $title, PDO::PARAM_STR);
+            $statement->bindValue(2, $date, PDO::PARAM_STR);
+            $statement->bindValue(3, $entry, PDO::PARAM_LOB);
+            $statement->bindValue(4, $tags PDO::PARAM_LOB);
+            $statement->bindValue(5, $post_id PDO::PARAM_INT);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
@@ -80,7 +80,7 @@ class Post
     }
     public function deletePost($post_id)
     {
-        $sql = 'DELETE FROM posts WHERE id = ?';
+        $sql = 'DELETE FROM posts WHERE post_id = ?';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
