@@ -23,6 +23,7 @@ include __DIR__ . '/header.phtml';
                         <textarea rows="2" name="tags"><?php echo $item[0]['tags']; ?></textarea>
                         <input type="hidden" name="post_id" value="<?php echo $id; ?>">
                         <input type="submit" value="Save Entry" class="button">
+                        <a href="/delete?id=<?php echo $id; ?>" class="button button-secondary">Delete Entry</a>
                         <a href="index.pthml" class="button button-secondary">Cancel</a>
                     </form>
                 </div>
