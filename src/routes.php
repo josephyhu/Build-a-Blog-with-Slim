@@ -11,11 +11,13 @@ $app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
     return $this->renderer->render($response, 'new.phtml', $args);
 });
 
-$app->get('/newcomment', function ($request, $response, $args) {
+$app->map(['GET', 'POST'], '/newcomment', function ($request, $response, $args) {
     $args['comment'] = $this->comment;
-    $args = array_merge($args, $request->getParsedBody());
-    $this->post->createComment($args['name'], $args['body']);
-    return $response->withStatus(302)->withHeader('Location', '/');
+    if ($request->getMethod() == 'POST') {
+        $args = array_merge($args, $request->getParsedBody());
+        $this->post->createComment($args['name'], $args['body']);
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
 });
 
 $app->get('/delete/{id}', function ($request, $response, $args) {
