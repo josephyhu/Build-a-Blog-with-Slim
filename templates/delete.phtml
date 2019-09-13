@@ -1,16 +1,7 @@
 <?php
 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-$item = $post->getPost($id);
 
 $section = 'Delete Entry';
-
-if ($post->deletePost($id)) {
-    echo 'Successfully deleted entry.';
-    header('refresh: 1; url = /');
-} else {
-    echo 'Unable to delete entry. Try again.';
-    header('refresh: 1; url = entries/' . implode('-', explode(' ', $item['title'])) . '?id=' . $item['post_id'] . '');
-}
 
 include __DIR__ . '/header.phtml';
 

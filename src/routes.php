@@ -5,23 +5,26 @@ $app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
     $args['post'] = $this->post;
     if ($request->getMethod() == 'POST') {
         $args = array_merge($args, $request->getParsedBody());
-        if ($post->createPost($args['title'], $args['date'], $args['entry'], $args['tags'])) {
-            echo 'Successfully added entry.';
-            header('refresh: 1; url = /');
-        } else {
-            echo 'Unable to add entry. Try again.';
-        }
+        $this->post->createPost($args['title'], $args['date'], $args['entry'], $args['tags']);
+        return $response->withStatus(302)->withHeader('Location', '/');
     }
     return $this->renderer->render($response, 'new.phtml', $args);
 });
 
 $app->get('/delete', function ($request, $response, $args) {
     $args['post'] = $this->post;
+    $this->post->deletePost($id);
+    return $response->withStatus(302)->withHeader('Location', '/');
     return $this->renderer->render($response, 'delete.phtml', $args);
 });
 
 $app->map(['GET', 'POST'], '/edit', function ($request, $response, $args) {
     $args['post'] = $this->post;
+    if ($request->getMethod() == 'POST') {
+        $args = array_merge($args, $request->getParsedBody());
+        $this->post->updatePost($args['title'], $args['date'], $args['entry'], $args['tags'], $args['post_id']);
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
     return $this->renderer->render($response, 'edit.phtml', $args);
 });
 

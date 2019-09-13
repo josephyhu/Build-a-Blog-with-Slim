@@ -6,21 +6,6 @@ $item = $post->getPost($id);
 
 $section = "Edit Entry";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = filter_input(INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT);
-    $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
-    $date = trim(filter_input(INPUT_POST, 'date', FILTER_SANITIZE_STRING));
-    $entry = trim(filter_input(INPUT_POST, 'entry', FILTER_SANITIZE_STRING));
-    $tags = trim(filter_input(INPUT_POST, 'tags', FILTER_SANITIZE_STRING));
-
-    if ($post->updatePost($title, $date, $entry, $tags, $id)) {
-        echo 'Successfully edited entry.';
-        header('refresh: 1; url = entries/' . implode('-', explode(' ', $item[0]['title'])) . '?id=' . $item[0]['post_id'] . '');
-    } else {
-        echo 'Unable to edit entry. Try again.';
-    }
-}
-
 include __DIR__ . '/header.phtml';
 ?>
          <section>
