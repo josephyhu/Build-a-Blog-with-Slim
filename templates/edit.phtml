@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($post->updatePost($title, $date, $entry, $tags, $id)) {
         echo 'Successfully edited entry.';
-        header('refresh: 1; url = entries/' . implode('-', explode(' ', $item[0]['title'])) . '?id=' . $item[0]['id'] . '');
+        header('refresh: 1; url = entries/' . implode('-', explode(' ', $item[0]['title'])) . '?id=' . $item[0]['post_id'] . '');
     } else {
         echo 'Unable to edit entry. Try again.';
     }

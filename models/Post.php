@@ -69,8 +69,8 @@ class Post
             $statement->bindValue(1, $title, PDO::PARAM_STR);
             $statement->bindValue(2, $date, PDO::PARAM_STR);
             $statement->bindValue(3, $entry, PDO::PARAM_LOB);
-            $statement->bindValue(4, $tags PDO::PARAM_LOB);
-            $statement->bindValue(5, $post_id PDO::PARAM_INT);
+            $statement->bindValue(4, $tags, PDO::PARAM_LOB);
+            $statement->bindValue(5, $post_id, PDO::PARAM_INT);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";

@@ -8,7 +8,7 @@ class Comment
     }
     public function getComments($post_id)
     {
-        $sql = 'SELECT * FROM comments INNER JOIN posts ON posts.post_id = comments.post_id WHERE post_id = ?';
+        $sql = 'SELECT * FROM comments INNER JOIN posts ON posts.post_id = comments.post_id WHERE post_id = ? ORDER BY comment_id';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
