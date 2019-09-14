@@ -8,7 +8,7 @@ class Comment
     }
     public function getComments($post_id)
     {
-        $sql = 'SELECT * FROM comments INNER JOIN posts ON posts.id = comments.post_id WHERE post_id = ? ORDER BY id';
+        $sql = 'SELECT * FROM comments JOIN posts ON posts.id = comments.post_id WHERE post_id = ? ORDER BY id';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $post_id, PDO::PARAM_INT);
@@ -17,8 +17,8 @@ class Comment
             echo "Error: " . $e->getMessage() . "<br>";
             return false;
         }
-        $comment = $statement->fetch();
-        return $comment;
+        $comments = $statement->fetchAll();
+        return $comments;
     }
     public function createComment($name, $comment_body, $post_id)
     {
