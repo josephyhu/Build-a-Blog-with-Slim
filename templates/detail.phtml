@@ -36,8 +36,8 @@ include __DIR__ . '/header.phtml';
                     <div class="comment">
                         <?php
                         foreach ($comment->getComments($id) as $item) {
-                            "<strong>" . $item['name'] . "</strong>";
-                            "<p>" . $item['body'] . "</p>";
+                            echo "<strong>" . $item['name'] . "</strong>";
+                            echo "<p>" . $item['body'] . "</p>";
                         }
                         ?>
                     </div>

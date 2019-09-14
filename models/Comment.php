@@ -22,12 +22,12 @@ class Comment
     }
     public function createComment($name, $comment_body, $post_id)
     {
-        $sql = 'INSERT INTO comments (name, body) VALUES (?, ?) WHERE post_id = ?';
+        $sql = 'INSERT INTO comments (name, body, post_id) VALUES (?, ?, ?)';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $name, PDO::PARAM_STR);
             $statement->bindValue(2, $comment_body, PDO::PARAM_LOB);
-            $statemnet->bindValue(3, $post_id, PDO::PARAM_INT);
+            $statement->bindValue(3, $post_id, PDO::PARAM_INT);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
