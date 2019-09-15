@@ -45,15 +45,16 @@ class Post
         $post = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $post;
     }
-    public function createPost($title, $date, $entry, $tags)
+    public function createPost($title, $date, $entry, $tags, $slug)
     {
-        $sql = 'INSERT INTO posts (title, date, body, tags) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO posts (title, date, body, tags, slug) VALUES (?, ?, ?, ?, ?)';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $title, PDO::PARAM_STR);
             $statement->bindValue(2, $date, PDO::PARAM_STR);
             $statement->bindValue(3, $entry, PDO::PARAM_LOB);
             $statement->bindValue(4, $tags, PDO::PARAM_LOB);
+            $statement->bindValue(5, $slug, PDO::PARAM_STR);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";

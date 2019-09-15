@@ -1,5 +1,5 @@
 <?php
-$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
 $item = $post->getPost($id);
 
 $section = $item[0]['title'];
@@ -23,7 +23,7 @@ include __DIR__ . '/header.phtml';
                                echo "</ul>";
                                }
                                ?></p>
-                            <p><a class="link" href="/edit?id=<?php echo $id; ?>">Edit Entry</a></p>
+                            <p><a class="link" href="/edit/<?php echo $id;  ?>">Edit Entry</a></p>
                             <p><a class="link" href="/delete/<?php echo $id; ?>">Delete Entry</a></p>
                         </div>
                     </article>
@@ -47,7 +47,6 @@ include __DIR__ . '/header.phtml';
                               <input type="text" name="name" required><br>
                               <label for="comment">Comment<span style="color:red">*</span></label>
                               <textarea rows="5" name="comment" required></textarea>
-                              <input type="hidden" name="post_id" value="<?php echo $id; ?>">
                               <input type="submit" value="Post Comment" class="button">
                         </form>
                     </div>
