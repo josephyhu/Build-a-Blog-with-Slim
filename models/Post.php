@@ -19,19 +19,6 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
-    public function getPostId()
-    {
-        $sql = 'SELECT id FROM posts WHERE slug = ?';
-        try {
-            $statement = $this->database->prepare($sql);
-            $statement->bindValue(1, $slug, PDO::PARAM_STR);
-            $statement->execute();
-        } catch (Exception $e) {
-            echo "Error: " . $e->getMessage() . "<br>";
-            return false;
-        }
-        return $statement;
-    }
     public function getPostsByTag($tag) {
         $sql = "SELECT id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
         try {
@@ -61,13 +48,16 @@ class Post
     public function createPost($title, $date, $entry, $tags, $slug)
     {
         $sql = 'INSERT INTO posts (title, date, body, tags, slug) VALUES (?, ?, ?, ?, ?)';
+        $sql2 = 'SELECT * FROM posts WHERE slug = ?'
         try {
             $statement = $this->database->prepare($sql);
+            $statement2 = $this->database->prepare($sql2);
             $statement->bindValue(1, $title, PDO::PARAM_STR);
             $statement->bindValue(2, $date, PDO::PARAM_STR);
             $statement->bindValue(3, $entry, PDO::PARAM_LOB);
             $statement->bindValue(4, $tags, PDO::PARAM_LOB);
             $statement->bindValue(5, $slug, PDO::PARAM_STR);
+            $statement2->bindValue(1, $slug, PDO::PARAM_STR);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
