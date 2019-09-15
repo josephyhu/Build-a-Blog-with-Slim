@@ -19,6 +19,19 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
+    public function getPostId()
+    {
+        $sql = 'SELECT id FROM posts WHERE slug = ?';
+        try {
+            $statement = $this->database->prepare($sql);
+            $statement->bindValue(1, $slug, PDO::PARAM_STR);
+            $statement->execute();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . "<br>";
+            return false;
+        }
+        return $statement;
+    }
     public function getPostsByTag($tag) {
         $sql = "SELECT id, title, date FROM posts WHERE tags LIKE '%$tag%' ORDER BY date DESC";
         try {
