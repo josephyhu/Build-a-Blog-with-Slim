@@ -12,9 +12,9 @@ $app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
     return $this->renderer->render($response, 'new.phtml', $args);
 });
 
-$app->get('/delete/{id}', function ($request, $response, $args) {
+$app->get('/delete/{slug}', function ($request, $response, $args) {
     $args['post'] = $this->post;
-    $this->post->deletePost($args['id']);
+    $this->post->deletePost($args['slug']);
     return $response->withStatus(302)->withHeader('Location', '/');
 });
 
@@ -28,12 +28,13 @@ $app->map(['GET', 'POST'], '/edit', function ($request, $response, $args) {
     return $this->renderer->render($response, 'edit.phtml', $args);
 });
 
-$app->get('/entries/{title}', function ($request, $response, $args) {
+$app->get('/entries/{slug}', function ($request, $response, $args) {
 
     // Render details view
     $args['post'] = $this->post;
     $args['comment'] = $this->comment;
-    return $this->renderer->render($response, 'detail.phtml', $args);
+    $item = $this->post->getPost($args['slug']);
+    return $this->renderer->render($response, 'detail.phtml', $args, $item);
 });
 
 $app->get('/tags', function ($request, $response, $args) {

@@ -31,12 +31,12 @@ class Post
         $posts = $statement->fetchAll();
         return $posts;
     }
-    public function getPost($post_id)
+    public function getPost($slug)
     {
-        $sql = 'SELECT * FROM posts WHERE id = ?';
+        $sql = 'SELECT * FROM posts WHERE slug = ?';
         try {
             $statement = $this->database->prepare($sql);
-            $statement->bindValue(1, $post_id, PDO::PARAM_INT);
+            $statement->bindValue(1, $slug, PDO::PARAM_STR);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
