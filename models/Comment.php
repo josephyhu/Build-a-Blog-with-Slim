@@ -35,4 +35,17 @@ class Comment
         }
         return true;
     }
+    public function deletecomment($slug)
+    {
+    $sql = 'DELETE FROM comments WHERE slug = ?';
+    try {
+        $statement = $this->database->prepare($sql);
+        $statement->bindValue(1, $slug, PDO::PARAM_STR);
+        $statement->execute();
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage() . "<br>";
+        return false;
+    }
+    return true;
+    }
 }

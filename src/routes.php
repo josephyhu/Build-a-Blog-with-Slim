@@ -7,14 +7,16 @@ $app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
         $args = array_merge($args, $request->getParsedBody());
         $args['slug'] = implode('-', explode(' ', $args['title']));
         $this->post->createPost($args['title'], $args['date'], $args['entry'], $args['tags'], $args['slug']);
-        return $response->withStatus(302)->withHeader('Location', '/');
+        return $response->withStatus(302)->withHeader('Location', '/entries/' . $args['slug'] . '');
     }
     return $this->renderer->render($response, 'new.phtml', $args);
 });
 
 $app->get('/delete/{slug}', function ($request, $response, $args) {
     $args['post'] = $this->post;
+    $args['comment'] = $this->comment;
     $this->post->deletePost($args['slug']);
+    $this->comment->deleteComment($args['slug']);
     return $response->withStatus(302)->withHeader('Location', '/');
 });
 
@@ -24,7 +26,7 @@ $app->map(['GET', 'POST'], '/edit/{slug}', function ($request, $response, $args)
     if ($request->getMethod() == 'POST') {
         $args = array_merge($args, $request->getParsedBody());
         $this->post->updatePost($args['title'], $args['date'], $args['entry'], $args['tags'], $args['slug']);
-        return $response->withStatus(302)->withHeader('Location', '/');
+        return $response->withStatus(302)->withHeader('Location', '/entries/' . $args['slug'] . '');
     }
     return $this->renderer->render($response, 'edit.phtml', $args);
 });
@@ -39,6 +41,7 @@ $app->map(['GET', 'POST'], '/entries/{slug}', function ($request, $response, $ar
     if ($request->getMethod() == 'POST') {
         $args = array_merge($args, $request->getParsedBody());
         $this->comment->createComment($args['name'], $args['comment_body'], $args['slug']);
+        return $response->withStatus(302)->withHeader('Location', '/entries/' . $args['slug'] . '');
     }
     return $this->renderer->render($response, 'detail.phtml', $args);
 });
