@@ -7,7 +7,6 @@ $app->map(['GET', 'POST'], '/new', function ($request, $response, $args) {
         $args = array_merge($args, $request->getParsedBody());
         $args['slug'] = implode('-', explode(' ', $args['title']));
         $this->post->createPost($args['title'], $args['date'], $args['entry'], $args['tags'], $args['slug']);
-        $args['id'] = $this->post->getPostId($args['slug']);
         return $response->withStatus(302)->withHeader('Location', '/');
     }
     return $this->renderer->render($response, 'new.phtml', $args);
