@@ -32,9 +32,9 @@ include __DIR__ . '/header.phtml';
                     <h2>Comments</h2>
                     <div class="comment">
                         <?php
-                        foreach ($comment->getComments($id) as $item) {
-                            echo "<strong>" . $item['name'] . "</strong>";
-                            echo "<p>" . $item['body'] . "</p>";
+                        foreach ($comments as $comment) {
+                            echo "<strong>" . $comment['name'] . "</strong>";
+                            echo "<p>" . $comment['body'] . "</p>";
                         }
                         ?>
                     </div>
@@ -43,7 +43,7 @@ include __DIR__ . '/header.phtml';
                               <label for="name">Name<span style="color:red">*</span></label>
                               <input type="text" name="name" required><br>
                               <label for="comment">Comment<span style="color:red">*</span></label>
-                              <textarea rows="5" name="comment" required></textarea>
+                              <textarea rows="5" name="comment_body" required></textarea>
                               <input type="submit" value="Post Comment" class="button">
                         </form>
                     </div>

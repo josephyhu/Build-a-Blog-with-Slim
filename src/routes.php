@@ -29,12 +29,17 @@ $app->map(['GET', 'POST'], '/edit/{slug}', function ($request, $response, $args)
     return $this->renderer->render($response, 'edit.phtml', $args);
 });
 
-$app->get('/entries/{slug}', function ($request, $response, $args) {
+$app->map(['GET', 'POST'], '/entries/{slug}', function ($request, $response, $args) {
 
     // Render details view
     $args['post'] = $this->post;
     $args['comment'] = $this->comment;
     $args['item'] = $this->post->getPost($args['slug']);
+    $args['comments'] = $this->comment->getComments($args['slug']);
+    if ($request->getMethod() == 'POST') {
+        $args = array_merge($args, $request->getParsedBody());
+        $this->comment->createComment($args['name'], $args['comment_body'], $args['slug']);
+    }
     return $this->renderer->render($response, 'detail.phtml', $args);
 });
 

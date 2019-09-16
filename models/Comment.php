@@ -6,12 +6,12 @@ class Comment
     {
         $this->database = $database;
     }
-    public function getComments($post_id)
+    public function getComments($slug)
     {
-        $sql = 'SELECT * FROM comments JOIN posts ON posts.id = comments.post_id WHERE post_id = ? ORDER BY id';
+        $sql = 'SELECT * FROM comments WHERE slug = ? ORDER BY id DESC';
         try {
             $statement = $this->database->prepare($sql);
-            $statement->bindValue(1, $post_id, PDO::PARAM_INT);
+            $statement->bindValue(1, $slug, PDO::PARAM_STR);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
@@ -20,14 +20,14 @@ class Comment
         $comments = $statement->fetchAll();
         return $comments;
     }
-    public function createComment($name, $comment_body, $post_id)
+    public function createComment($name, $comment_body, $slug)
     {
-        $sql = 'INSERT INTO comments (name, body, post_id) VALUES (?, ?, ?)';
+        $sql = 'INSERT INTO comments (name, body, slug) VALUES (?, ?, ?)';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $name, PDO::PARAM_STR);
             $statement->bindValue(2, $comment_body, PDO::PARAM_LOB);
-            $statement->bindValue(3, $post_id, PDO::PARAM_INT);
+            $statement->bindValue(3, $slug, PDO::PARAM_STR);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
