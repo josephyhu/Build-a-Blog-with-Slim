@@ -13,7 +13,7 @@ include __DIR__ . '/header.phtml';
                         if (!empty($item['tags'])) {
                             $tags = explode(trim(', '), $item['tags']);
                             foreach ($tags as $tag) {
-                                echo "<a href='tags?tag=" . trim($tag) . "'>" . $tag . "</a><br>";
+                                echo "<a href='tags/" . trim($tag) . "'>" . $tag . "</a><br>";
                             }
                         }
                     }

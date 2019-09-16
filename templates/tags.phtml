@@ -1,7 +1,7 @@
 <?php
-$tag = filter_input(INPUT_GET, 'tag', FILTER_SANITIZE_STRING);
-
-$section = $tag;
+foreach ($items as $item) {
+    $section = $item['tags'];
+}
 
 include __DIR__ . '/header.phtml';
 ?>
@@ -9,7 +9,7 @@ include __DIR__ . '/header.phtml';
     <div class="container">
       <div class="entry-list">
         <article><?php
-        foreach ($post->getPostsByTag($tag) as $item) {
+        foreach ($items as $item) {
             echo "<h2><a href='/../entries/" . $item['slug'] . "'>" . $item['title'] . "</a></h2>";
             echo "<time datetime='" . $item['date'] . "'>" . date("F d, Y", strtotime($item['date'])) . "</time><br>";
         }

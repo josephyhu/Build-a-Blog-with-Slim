@@ -1,6 +1,5 @@
 <?php
 $section = $item[0]['title'];
-var_dump($item);
 
 include __DIR__ . '/header.phtml';
 ?>
@@ -16,13 +15,13 @@ include __DIR__ . '/header.phtml';
                                $tags = explode(trim(", "), $item[0]['tags']);
                                echo "<ul>";
                                foreach ($tags as $tag) {
-                                   echo "<li><a href='/../tags?tag=" . trim($tag) . "'>" . $tag . "</a></li>";
+                                   echo "<li><a href='/../tags/" . trim($tag) . "'>" . $tag . "</a></li>";
                                }
                                echo "</ul>";
                                }
                                ?></p>
-                            <p><a class="link" href="/edit/<?php echo $id;  ?>">Edit Entry</a></p>
-                            <p><a class="link" href="/delete/<?php echo $id; ?>">Delete Entry</a></p>
+                            <p><a class="link" href="/edit/<?php echo $item[0]['slug'];  ?>">Edit Entry</a></p>
+                            <p><a class="link" href="/delete/<?php echo $item[0]['slug']; ?>">Delete Entry</a></p>
                         </div>
                     </article>
                 </div>
