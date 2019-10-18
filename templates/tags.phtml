@@ -13,7 +13,7 @@ include __DIR__ . '/header.phtml';
             echo "<time datetime='" . $item['date'] . "'>" . date("F d, Y", strtotime($item['date'])) . "</time><br>";
             $tags = explode(trim(','), $item['tags']);
             foreach ($tags as $tag) {
-                echo "<a href='" . $tag . "'>#" . trim($tag) . "</a> ";
+                echo "<a href='" . trim($tag) . "'>#" . trim($tag) . "</a> ";
             }
         }
         ?>
