@@ -12,10 +12,10 @@ include __DIR__ . '/header.phtml';
                         <div class="entry">
                             <p><?php echo $item[0]['body']; ?></p>
                             <p><?php if (!empty($item[0]['tags'])) {
-                               $tags = explode(trim(", "), $item[0]['tags']);
+                               $tags = explode(trim(','), $item[0]['tags']);
                                echo "<ul>";
                                foreach ($tags as $tag) {
-                                   echo "<li><a href='/../tags/" . trim($tag) . "'>#" . $tag . "</a></li>";
+                                   echo "<li><a href='/../tags/" . $tag . "'>#" . trim($tag) . "</a></li>";
                                }
                                echo "</ul>";
                                }
