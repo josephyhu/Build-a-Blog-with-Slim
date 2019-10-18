@@ -14,7 +14,7 @@ include __DIR__ . '/header.phtml';
                         <input type="date" name="date" value="<?php echo $item[0]['date']; ?>"><br>
                         <label for="entry">Entry</label>
                         <textarea rows="5" name="entry"><?php echo $item[0]['body']; ?></textarea>
-                        <label for="tags">Tags (separate with commas)</label>
+                        <label for="tags">Tags (separate with commas, don't add spaces between tags)</label>
                         <textarea rows="2" name="tags"><?php echo $item[0]['tags']; ?></textarea>
                         <input type="submit" value="Save Entry" class="button">
                         <a href="/delete/<?php echo $item[0]['slug']; ?>" class="button button-secondary">Delete Entry</a>

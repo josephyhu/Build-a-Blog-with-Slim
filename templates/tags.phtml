@@ -1,12 +1,11 @@
 <?php
-foreach ($items as $item) {
-    $section = $item['tags'];
-}
+$section = $tag;
 
 include __DIR__ . '/header.phtml';
 ?>
   <section>
     <div class="container">
+      <h2><?php echo "#" . $tag; ?></h2>
       <div class="entry-list">
         <article><?php
         foreach ($items as $item) {
