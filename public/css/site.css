@@ -256,22 +256,8 @@ form textarea:hover {
 }
 .edit-entry form textarea,
 .new-entry form textarea {
-	min-height: 400px;
+	resize: none;
 }
 input[type=submit] {
 	margin-right: 5px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
