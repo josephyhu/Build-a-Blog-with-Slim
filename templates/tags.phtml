@@ -3,22 +3,23 @@ $page = $tag;
 
 include __DIR__ . '/header.phtml';
 ?>
-  <section>
-    <div class="container">
-      <h2><?php echo "#" . trim($tag); ?></h2>
-      <div class="entry-list">
-        <article><?php
-        foreach ($items as $item) {
-            echo "<h2><a href='/../entries/" . $item['slug'] . "'>" . $item['title'] . "</a></h2>";
-            echo "<time datetime='" . $item['date'] . "'>" . date("F d, Y", strtotime($item['date'])) . "</time><br>";
-            $tags = explode(trim(','), $item['tags']);
-            foreach ($tags as $tag) {
-                echo "<a href='" . trim($tag) . "'>#" . trim($tag) . "</a> ";
+    <section>
+      <div class="container">
+        <div class="entry-list">
+          <article>
+            <h1><?php echo "#" . trim($tag); ?></h1>
+            <?php
+            foreach ($items as $item) {
+                echo "<h2><a href='/../entries/" . $item['slug'] . "'>" . $item['title'] . "</a></h2>";
+                echo "<time datetime='" . $item['date'] . "'>" . date("F d, Y", strtotime($item['date'])) . "</time><br>";
+                $tags = explode(trim(','), $item['tags']);
+                foreach ($tags as $tag) {
+                    echo "<a href='" . trim($tag) . "'>#" . trim($tag) . "</a> ";
+                }
             }
-        }
-        ?>
-        </article>
+            ?>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 <?php include __DIR__ . '/footer.phtml'; ?>
