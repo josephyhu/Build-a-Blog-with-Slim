@@ -42,7 +42,7 @@ class Post
             echo "Error: " . $e->getMessage() . "<br>";
             return false;
         }
-        $post = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $post = $statement->fetch(PDO::FETCH_ASSOC);
         return $post;
     }
     public function createPost($title, $date, $entry, $tags, $slug)

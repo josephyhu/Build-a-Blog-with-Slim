@@ -1,5 +1,5 @@
 <?php
-$page = $item[0]['title'];
+$page = $item['title'];
 
 include __DIR__ . '/header.phtml';
 ?>
@@ -7,13 +7,13 @@ include __DIR__ . '/header.phtml';
       <div class="container">
         <div class="entry-list single">
           <article>
-            <h1><?php echo $item[0]['title']; ?></h1>
-            <time datetime="<?php $item[0]['date']; ?>"><?php echo date('F d, Y', strtotime($item[0]['date'])); ?></time>
+            <h1><?php echo $item['title']; ?></h1>
+            <time datetime="<?php $item['date']; ?>"><?php echo date('F d, Y', strtotime($item['date'])); ?></time>
             <div class="entry">
-              <p><?php echo $item[0]['body']; ?></p>
+              <p><?php echo $item['body']; ?></p>
               <?php
-              if (!empty($item[0]['tags'])) {
-                  $tags = explode(trim(','), $item[0]['tags']);
+              if (!empty($item['tags'])) {
+                  $tags = explode(trim(','), $item['tags']);
                   echo "<ul>";
                   foreach ($tags as $tag) {
                       echo "<li><a href='/../tags/" . trim($tag) . "'>#" . trim($tag) . "</a></li>";
@@ -21,8 +21,8 @@ include __DIR__ . '/header.phtml';
                   echo "</ul>";
               }
               ?>
-              <p><a class="link" href="/edit/<?php echo $item[0]['slug'];  ?>">Edit Entry</a></p>
-              <p><a class="link" href="/delete/<?php echo $item[0]['slug']; ?>">Delete Entry</a></p>
+              <p><a class="link" href="/edit/<?php echo $item['slug'];  ?>">Edit Entry</a></p>
+              <p><a class="link" href="/delete/<?php echo $item['slug']; ?>">Delete Entry</a></p>
             </div>
           </article>
         </div>
