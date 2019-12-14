@@ -25,8 +25,9 @@ $app->map(['GET', 'POST'], '/edit/{slug}', function ($request, $response, $args)
     $args['item'] = $this->post->getPost($args['slug']);
     if ($request->getMethod() == 'POST') {
         $args = array_merge($args, $request->getParsedBody());
-        $this->post->updatePost($args['title'], $args['date'], $args['entry'], $args['tags'], $args['slug']);
-        return $response->withStatus(302)->withHeader('Location', '/entries/' . $args['slug'] . '');
+        $args['new_slug'] = implode('-', explode(' ', $args['title']));
+        $this->post->updatePost($args['title'], $args['date'], $args['entry'], $args['tags'], $args['new_slug'], $args['slug']);
+        return $response->withStatus(302)->withHeader('Location', '/entries/' . $args['new_slug'] . '');
     }
     return $this->renderer->render($response, 'edit.phtml', $args);
 });

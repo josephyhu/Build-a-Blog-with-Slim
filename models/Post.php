@@ -70,16 +70,17 @@ class Post
         }
         return true;
     }
-    public function updatePost($title, $date, $entry, $tags, $slug)
+    public function updatePost($title, $date, $entry, $tags, $new_slug, $slug)
     {
-        $sql = 'UPDATE posts SET title = ?, date = ?, body = ?, tags = ? WHERE slug = ?';
+        $sql = 'UPDATE posts SET title = ?, date = ?, body = ?, tags = ?, slug = ? WHERE slug = ?';
         try {
             $statement = $this->database->prepare($sql);
             $statement->bindValue(1, $title, PDO::PARAM_STR);
             $statement->bindValue(2, $date, PDO::PARAM_STR);
             $statement->bindValue(3, $entry, PDO::PARAM_LOB);
             $statement->bindValue(4, $tags, PDO::PARAM_LOB);
-            $statement->bindValue(5, $slug, PDO::PARAM_STR);
+            $statement->bindValue(5, $new_slug, PDO::PARAM_STR);
+            $statement->bindValue(6, $slug, PDO::PARAM_STR);
             $statement->execute();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . "<br>";
